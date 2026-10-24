@@ -1,0 +1,160 @@
+// F-14 fastfetch layout from unknown-technology.com, recolored with ANSI codes
+// (instead of fixed hex) so it stays readable on both Iceberg Light and Calamity.
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+
+  "logo": {
+    "type": "file",
+    "source": "%FASTFETCH_F14_ROOT%/f14-logo.txt",
+    "position": "top",
+    "color": {
+      "1": "90",
+      "2": "39",
+      "3": "36",
+      "4": "31",
+      "5": "33"
+    },
+    "padding": {
+      "top": 1,
+      "left": 1,
+      "right": 1
+    }
+  },
+
+  "display": {
+    "separator": " :: ",
+    "color": {
+      "keys": "34",
+      "title": "35",
+      "separator": "90"
+    },
+    "key": {
+      "width": 13
+    },
+    "bar": {
+      "width": 20,
+      "char": {
+        "elapsed": "#",
+        "total": "."
+      },
+      "border": {
+        "left": "[",
+        "right": "]"
+      },
+      "color": {
+        "elapsed": "36",
+        "total": "90",
+        "border": "90"
+      }
+    },
+    "percent": {
+      "type": ["num"],
+      "color": {
+        "green": "32",
+        "yellow": "33",
+        "red": "31"
+      }
+    }
+  },
+
+  "modules": [
+    {
+      "type": "custom",
+      "format": "{#34}+--------------------------------------------------------------------------+{#}"
+    },
+    {
+      "type": "custom",
+      "format": "{#34}|{#} {#35}F-14 // NIGHT INTERCEPTOR{#}                                 {#32}STATUS: ONLINE{#} {#34}|{#}"
+    },
+    {
+      "type": "custom",
+      "format": "{#34}+--------------------------------------------------------------------------+{#}"
+    },
+    {
+      "type": "title",
+      "key": "USER",
+      "keyColor": "35",
+      "format": "{user-name}@{host-name}"
+    },
+    {
+      "type": "os",
+      "key": "OS",
+      "format": "{pretty-name} [{arch}]"
+    },
+    {
+      "type": "host",
+      "key": "DEVICE",
+      "format": "{name} // {version}"
+    },
+    {
+      "type": "cpu",
+      "key": "CPU",
+      "format": "{name} // {cores-physical}C {cores-logical}T @ {freq-max}"
+    },
+    {
+      "type": "cpuusage",
+      "key": "CPU LOAD",
+      "format": "{avg-bar} {avg} AVG // PEAK {max} CORE {max-index}",
+      "percent": {
+        "type": ["bar", "num"]
+      }
+    },
+    {
+      "type": "gpu",
+      "key": "GPU",
+      "format": "{name} [{type}] {?dedicated-total}// {dedicated-total}{?}"
+    },
+    {
+      "type": "memory",
+      "key": "MEMORY",
+      "format": "{used} / {total} ({percentage})"
+    },
+    {
+      "type": "swap",
+      "key": "SWAP",
+      "format": "{used} / {total} ({percentage})"
+    },
+    {
+      "type": "disk",
+      "key": "DRIVE",
+      "format": "{mountpoint} {size-used} / {size-total} {size-percentage-bar} {size-percentage}",
+      "percent": {
+        "type": ["bar", "num"]
+      }
+    },
+    {
+      "type": "display",
+      "key": "DISPLAY",
+      "format": "{width}x{height} @ {refresh-rate} Hz [{type}]"
+    },
+    {
+      "type": "battery",
+      "key": "BATTERY",
+      "format": "{capacity} // {status} {?time-formatted}// {time-formatted}{?}"
+    },
+    {
+      "type": "sound",
+      "key": "AUDIO",
+      "format": "{name}"
+    },
+    {
+      "type": "uptime",
+      "key": "UPTIME",
+      "format": "{formatted}"
+    },
+    {
+      "type": "datetime",
+      "key": "LOCAL TIME",
+      "format": "{year}-{month-pretty}-{day-pretty} // {hour-pretty}:{minute-pretty} {timezone-name}"
+    },
+    {
+      "type": "custom",
+      "format": "{#34}+--------------------------------------------------------------------------+{#}"
+    },
+    {
+      "type": "colors",
+      "symbol": "circle",
+      "paddingLeft": 4
+    }
+  ]
+}
