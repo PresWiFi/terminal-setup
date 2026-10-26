@@ -93,3 +93,5 @@ if [[ -o interactive && $TERM_PROGRAM != vscode ]]; then
   fi
   (( $+commands[fastfetch] )) && ff
 fi
+
+plugins=(git git-commit tmux zsh-autosuggestions zsh-syntax-highlighting)
