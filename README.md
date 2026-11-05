@@ -1,6 +1,6 @@
 # Terminal Setup
 
-Oh My Posh + fastfetch + btop for Windows, macOS, and Linux, based on [this guide](https://unknown-technology.com/i-didnt-know-the-windows-terminal-could-look-this-good-fastfetch-oh-my-posh-more/). Each installer sets up the M365Princess prompt, the Meslo Nerd Font, the F-14 fastfetch screen, btop, and the Iceberg Light / Calamity color schemes. All of them are safe to re-run.
+Oh My Posh (M365Princess), Meslo Nerd Font, F-14 fastfetch screen, btop, and Iceberg Light / Calamity color schemes for Windows, macOS and Linux. Based on [this guide](https://unknown-technology.com/i-didnt-know-the-windows-terminal-could-look-this-good-fastfetch-oh-my-posh-more/). Installers are safe to re-run.
 
 ```
 shared/    prompt theme, color schemes, fastfetch config (used by every platform)
@@ -10,7 +10,7 @@ linux/     Linux installer
 unix/      zsh profile and helpers shared by macOS and Linux
 ```
 
-Clone the repo somewhere permanent first. The shell profile loads files from the clone, so don't delete or move it afterwards. If you do move it, re-run the installer.
+Clone somewhere permanent; the profile loads files from the clone. Re-run the installer if you move it.
 
 ```sh
 git clone https://github.com/PresWiFi/terminal-setup.git ~/terminal-setup
@@ -26,7 +26,7 @@ In PowerShell 7 or Windows PowerShell 5.1:
 .\windows\Install-TerminalSetup.ps1 -NoWinget     # skip winget
 ```
 
-If scripts are blocked, run `powershell -ExecutionPolicy Bypass -File .\windows\Install-TerminalSetup.ps1`. If winget is missing or fails, the installer downloads portable builds from GitHub into `%LOCALAPPDATA%\Programs\TerminalTools`. It doesn't need admin rights.
+If scripts are blocked: `powershell -ExecutionPolicy Bypass -File .\windows\Install-TerminalSetup.ps1`. Without winget it downloads portable builds to `%LOCALAPPDATA%\Programs\TerminalTools`. No admin needed.
 
 ## macOS
 
@@ -34,10 +34,10 @@ If scripts are blocked, run `powershell -ExecutionPolicy Bypass -File .\windows\
 ~/terminal-setup/macos/install.sh                 # add --opacity 80 for more see-through
 ```
 
-- Installs Homebrew if it's missing, then `oh-my-posh`, `fastfetch`, and `btop`.
-- **iTerm2** (if installed): adds a "Terminal Setup" profile with the font and transparency and makes it the default. Restart iTerm2 afterwards.
-- **Terminal.app**: sets the font. macOS may ask to allow Terminal to control Terminal; say yes. Terminal.app can't change its 16-color palette from a script, so `theme` only switches the background, text, and cursor colors there. For the full themes, use iTerm2 or [Ghostty](https://ghostty.org).
-- zsh is already the default shell on macOS. If yours isn't, the installer switches it (`--no-chsh` to skip).
+- Installs Homebrew (if missing), `oh-my-posh`, `fastfetch`, `btop`.
+- **iTerm2:** adds and defaults a "Terminal Setup" profile. Restart iTerm2.
+- **Terminal.app:** sets the font (allow the automation prompt). `theme` only changes background, text and cursor here; use iTerm2 or [Ghostty](https://ghostty.org) for full themes.
+- Switches the shell to zsh if needed (`--no-chsh` to skip).
 
 ## Linux
 
@@ -46,14 +46,13 @@ If scripts are blocked, run `powershell -ExecutionPolicy Bypass -File .\windows\
 ~/terminal-setup/linux/install.sh --no-chsh       # keep your current login shell
 ```
 
-- Works with apt (Debian, Ubuntu), dnf (Fedora), pacman (Arch), and zypper (openSUSE).
-- Installs zsh and **makes it your login shell**. Log out and back in, or run `exec zsh`.
-- Installs fastfetch and btop from your distro, or from GitHub releases into `~/.local/bin` if your distro doesn't package them (Ubuntu 24.04 has no fastfetch, for example).
-- Sets the font and transparency in **GNOME Terminal** and **Ptyxis**. For other terminals (Konsole, kitty, Alacritty, ...), set the font to `MesloLGM Nerd Font` yourself.
-- **WSL**: the font isn't installed inside Linux, because Windows Terminal draws it. Run the Windows installer on the Windows side to get the font.
-- If you install over SSH, install the font on the computer you're connecting *from*.
+- apt, dnf, pacman, zypper.
+- Installs zsh and **sets it as login shell** (`exec zsh` or log out/in).
+- fastfetch/btop from the distro, else GitHub releases into `~/.local/bin`.
+- Sets font and transparency in GNOME Terminal and Ptyxis. Elsewhere, set `MesloLGM Nerd Font` yourself.
+- **WSL / SSH:** install the font on the machine running the terminal (Windows installer for WSL).
 
-Your existing `~/.zshrc` is kept. The installer adds one line at the end that loads `unix/profile.zsh`.
+Appends one line to `~/.zshrc` to load `unix/profile.zsh`.
 
 ## Use
 
@@ -65,9 +64,7 @@ Your existing `~/.zshrc` is kept. The installer adds one line at the end that lo
 | `ff`          | Show the F-14 system info screen again        |
 | `btop`        | Live CPU/RAM/disk/network monitor (`q` quits) |
 
-The prompt shows your user, folder, git branch, and time. The F-14 screen shows when a tab opens (not in VS Code's terminal).
-
-On Windows, `theme` changes Windows Terminal's settings. On macOS and Linux it recolors the terminal with escape codes and remembers your choice in `~/.config/terminal-setup/theme`, so new tabs open in the same theme.
+F-14 screen shows on new tabs (not in VS Code). On macOS/Linux the theme choice is saved in `~/.config/terminal-setup/theme`.
 
 ## Customize
 
@@ -79,4 +76,4 @@ On Windows, `theme` changes Windows Terminal's settings. On macOS and Linux it r
 | Startup (Windows) | `windows/profile.ps1`                                     |
 | Startup (macOS/Linux) | `unix/profile.zsh`                                    |
 
-The profiles load these files straight from the repo, so your edits apply to new tabs.
+Edits apply to new tabs.
